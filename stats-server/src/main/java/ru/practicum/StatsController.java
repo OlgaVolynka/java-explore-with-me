@@ -6,9 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.model.EndpointHit;
 import ru.practicum.model.ViewStats;
 import ru.practicum.model.dto.GetEndpointHitDto;
+import ru.practicum.model.dto.RequestEndpointHitDto;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -26,9 +26,8 @@ public class StatsController {
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
-    public EndpointHit createHit(@RequestBody @Valid GetEndpointHitDto hit) {
+    public RequestEndpointHitDto createHit(@RequestBody @Valid GetEndpointHitDto hit) {
         log.info("Create hit {}", hit);
-
         return statsService.create(hit);
     }
 
@@ -39,6 +38,5 @@ public class StatsController {
                                   @RequestParam(defaultValue = "false") boolean unique) {
         log.info("Get uri  from={}, to={}", start, end);
         return statsService.getHit(start, end, uris, unique);
-
     }
 }

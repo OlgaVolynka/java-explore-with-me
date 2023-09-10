@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.model.EndpointHit;
 import ru.practicum.model.ViewStats;
 import ru.practicum.model.dto.GetEndpointHitDto;
+import ru.practicum.model.dto.RequestEndpointHitDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,9 +19,9 @@ public class StatsService {
     private final StatsRepository statsRepository;
 
     @Transactional
-    public EndpointHit create(GetEndpointHitDto hit) {
-
-        return statsRepository.save(EndpointHitMapper.endpointHitDtoToEndpointHit(hit));
+    public RequestEndpointHitDto create(GetEndpointHitDto hit) {
+        EndpointHit newEndpointHit = statsRepository.save(EndpointHitMapper.endpointHitDtoToEndpointHit(hit));
+        return EndpointHitMapper.endpointHitToRequestEndpointHitDto(newEndpointHit);
     }
 
     public List<ViewStats> getHit(LocalDateTime start, LocalDateTime end, List<String> uri, Boolean unique) {
