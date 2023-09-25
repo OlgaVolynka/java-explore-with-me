@@ -28,8 +28,10 @@ public class StatsService {
 
         if (uri == null) return statsRepository.getStatsNotUri(start, end);
         else if (unique == true) return statsRepository.getStatsUnique(start, end, uri);
-        else {List<ViewStats> v = statsRepository.getStatsNotUnique(start, end, uri);
-            return v;}
+        else {
+            List<ViewStats> v = statsRepository.getStatsNotUnique(start, end, uri);
+            return v;
+        }
 
     }
 }

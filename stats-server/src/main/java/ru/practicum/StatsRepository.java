@@ -40,6 +40,7 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
     List<ViewStats> getStatsNotUnique(@Param("start") LocalDateTime start,
                                       @Param("end") LocalDateTime end,
                                       @Param("uris") String[] uris);
+
     /*
   @Query("select new ru.practicum.model.ViewStats(" +
           "h.app," +
