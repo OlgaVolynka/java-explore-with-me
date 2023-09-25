@@ -24,7 +24,7 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
             "order by 3 desc ")
     List<ViewStats> getStatsUnique(@Param("start") LocalDateTime start,
                                    @Param("end") LocalDateTime end,
-                                   @Param("uris") List<String> uris);
+                                   @Param("uris") String[] uris);
 
     @Query("select new ru.practicum.model.ViewStats(" +
             "h.app," +
@@ -39,8 +39,23 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
             "order by 3 desc ")
     List<ViewStats> getStatsNotUnique(@Param("start") LocalDateTime start,
                                       @Param("end") LocalDateTime end,
-                                      @Param("uris") List<String> uris);
+                                      @Param("uris") String[] uris);
+    /*
+  @Query("select new ru.practicum.model.ViewStats(" +
+          "h.app," +
+          "h.uri," +
+          "count (h.ip)" +
+          ") " +
+          "" +
+          "from EndpointHit h " +
+          "where h.uri in :uris and h.timestamp between :start and :end " +
 
+          "group by h.app, h.uri " +
+          "order by COUNT (h.uri) DESC")
+  List<ViewStats> getStatsNotUnique(@Param("start") LocalDateTime start,
+                                    @Param("end") LocalDateTime end,
+                                    @Param("uris") String[] uris);
+*/
     @Query("select new ru.practicum.model.ViewStats(" +
             "h.app," +
             "h.uri," +
@@ -54,6 +69,13 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
     List<ViewStats> getStatsNotUri(@Param("start") LocalDateTime start,
                                    @Param("end") LocalDateTime end
     );
+/*
+    @Query("SELECT " + NEW_VIEW_STATS + "(h.app, h.uri, COUNT(h.uri)) " + "FROM Hit AS h " +
+            "WHERE h.uri IN (?1) AND h.timestamp BETWEEN ?2 AND ?3 " +
+            "GROUP BY h.app, h.uri " +
+            "ORDER BY COUNT (h.uri) DESC")
+    List<ViewStats> findHitsWithUri(String[] uris, LocalDateTime start, LocalDateTime end);
+*/
 }
 
 

@@ -1,0 +1,42 @@
+package ru.practicum.compilations.controller;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import ru.practicum.compilations.CompilationService;
+import ru.practicum.compilations.dto.CompilationDto;
+import ru.practicum.compilations.dto.CompilationUpdatedDto;
+import ru.practicum.compilations.dto.NewCompilationDto;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("/admin/compilations")
+@RequiredArgsConstructor
+@Slf4j
+public class AdminCompilationController {
+
+    private final CompilationService compilationService;
+
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public CompilationDto create(@Valid @RequestBody NewCompilationDto newCompilationDto) {
+        log.info("Create compilation {}", newCompilationDto);
+        return compilationService.createCompilation(newCompilationDto);
+    }
+
+    @PatchMapping("/{compId}")
+    public CompilationDto updateById(@PathVariable(value = "compId") Long compId,
+                                     @Valid @RequestBody CompilationUpdatedDto compilationDto) {
+        log.info("Update compilation by id = {}", compId);
+        return compilationService.updateCompilationById(compId, compilationDto);
+    }
+
+    @DeleteMapping("/{compId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(value = "compId") Long compId) {
+        log.info("Delete compilation by id = {}", compId);
+        compilationService.deleteCompilationById(compId);
+    }
+}

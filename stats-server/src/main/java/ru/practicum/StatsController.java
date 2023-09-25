@@ -34,7 +34,7 @@ public class StatsController {
     @GetMapping("/stats")
     public List<ViewStats> getUri(@RequestParam @DateTimeFormat(pattern = DATA_FORMAT_PATTERN) LocalDateTime start,
                                   @RequestParam @DateTimeFormat(pattern = DATA_FORMAT_PATTERN) LocalDateTime end,
-                                  @RequestParam(required = false) ArrayList<String> uris,
+                                  @RequestParam(required = false) String[] uris,
                                   @RequestParam(defaultValue = "false") boolean unique) {
         log.info("Get uri  from={}, to={}", start, end);
         return statsService.getHit(start, end, uris, unique);
