@@ -29,7 +29,7 @@ public class StatsClient extends BaseClient {
 
 
     @Autowired
-    public StatsClient(@Value("${stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
+    public StatsClient(@Value("&{stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
         super(builder
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new).build());
@@ -47,7 +47,6 @@ public class StatsClient extends BaseClient {
                 "unique", unique
         );
         ResponseEntity<Object> objectResponseEntity = get("/stats?start={start}&end={end}&uris={uris}&unique={unique}", parameters);
-        //    ResponseEntity<Object> objectResponseEntity = get("/stats?start={start}&end={end}&unique={unique}", parameters);
 
         return objectMapper.convertValue(objectResponseEntity.getBody(), new TypeReference<List<ViewStats>>() {
 

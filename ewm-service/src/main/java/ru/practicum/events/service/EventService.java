@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.category.CategoryRepository;
 import ru.practicum.category.model.Category;
+
+
 import ru.practicum.client.StatsClient;
 import ru.practicum.events.dto.event.*;
 import ru.practicum.events.dto.location.LocationMapper;
@@ -18,6 +20,7 @@ import ru.practicum.events.model.Location;
 import ru.practicum.events.repository.EventRepository;
 import ru.practicum.events.repository.LocationRepository;
 import ru.practicum.exception.*;
+
 import ru.practicum.model.ViewStats;
 import ru.practicum.model.dto.GetEndpointHitDto;
 import ru.practicum.user.UserRepository;
