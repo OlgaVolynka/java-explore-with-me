@@ -34,10 +34,10 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleException(Throwable e) {
         return Map.of(
-                "status", "INTERNAL SERVER ERROR",
+                "status", "BAD_REQUEST",
                 "message", e.getMessage()
 
         );
