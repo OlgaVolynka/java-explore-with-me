@@ -12,6 +12,7 @@ import java.util.Set;
 public class EventRequestStatusUpdateRequest {
     private Set<Long> requestIds;
     private EventRequestStatus status;
+
     public enum EventRequestStatus {
         CONFIRMED,
         REJECTED
