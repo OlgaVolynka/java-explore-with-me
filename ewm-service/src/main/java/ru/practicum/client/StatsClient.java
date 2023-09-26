@@ -7,12 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import ru.practicum.model.ViewStats;
-import ru.practicum.model.dto.GetEndpointHitDto;
+import ru.practicum.client.dto.GetEndpointHitDto;
+import ru.practicum.client.dto.ViewStats;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +23,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
-
+@PropertySource(value = {"classpath:application.properties"})
 public class StatsClient extends BaseClient {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -29,13 +31,13 @@ public class StatsClient extends BaseClient {
 
 
     @Autowired
-    public StatsClient(@Value("&{stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
+    public StatsClient(@Value("${stats-service.url}") String serverUrl, RestTemplateBuilder builder) {
         super(builder
                 .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new).build());
     }
 
-  /*  public ResponseEntity<Object> saveHit(GetEndpointHitDto hit) {
+    public ResponseEntity<Object> saveHit(GetEndpointHitDto hit) {
         return post(hit);
     }
 
@@ -51,5 +53,5 @@ public class StatsClient extends BaseClient {
         return objectMapper.convertValue(objectResponseEntity.getBody(), new TypeReference<List<ViewStats>>() {
 
         });
-    }*/
+    }
 }

@@ -13,6 +13,8 @@ import ru.practicum.category.model.Category;
 
 
 import ru.practicum.client.StatsClient;
+import ru.practicum.client.dto.GetEndpointHitDto;
+import ru.practicum.client.dto.ViewStats;
 import ru.practicum.events.dto.event.*;
 import ru.practicum.events.dto.location.LocationMapper;
 import ru.practicum.events.model.Event;
@@ -21,8 +23,8 @@ import ru.practicum.events.repository.EventRepository;
 import ru.practicum.events.repository.LocationRepository;
 import ru.practicum.exception.*;
 
-import ru.practicum.model.ViewStats;
-import ru.practicum.model.dto.GetEndpointHitDto;
+
+
 import ru.practicum.user.UserRepository;
 import ru.practicum.user.model.User;
 import ru.practicum.util.EventState;

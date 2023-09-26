@@ -117,7 +117,6 @@
             <groupId>ru.practicum</groupId>
             <artifactId>stats-server</artifactId>
             <version>${project.version}</version>
-            <scope>compile</scope>
         </dependency>
 
 
