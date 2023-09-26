@@ -3,6 +3,7 @@ package ru.practicum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.exception.DataNotCorrectException;
 import ru.practicum.model.EndpointHit;
 import ru.practicum.model.ViewStats;
 import ru.practicum.model.dto.GetEndpointHitDto;
@@ -25,6 +26,9 @@ public class StatsService {
     }
 
     public List<ViewStats> getHit(LocalDateTime start, LocalDateTime end, String[] uri, Boolean unique) {
+
+        if (start == null) start = LocalDateTime.now();
+        if (start.isAfter(end)) throw new DataNotCorrectException("Start should be before and");
 
         if (uri == null) return statsRepository.getStatsNotUri(start, end);
         else if (unique == true) return statsRepository.getStatsUnique(start, end, uri);
