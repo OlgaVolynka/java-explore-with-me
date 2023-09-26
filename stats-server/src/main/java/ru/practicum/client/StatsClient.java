@@ -35,7 +35,7 @@ public class StatsClient extends BaseClient {
                 .requestFactory(HttpComponentsClientHttpRequestFactory::new).build());
     }
 
-  /*  public ResponseEntity<Object> saveHit(GetEndpointHitDto hit) {
+    public ResponseEntity<Object> saveHit(GetEndpointHitDto hit) {
         return post(hit);
     }
 
@@ -51,5 +51,5 @@ public class StatsClient extends BaseClient {
         return objectMapper.convertValue(objectResponseEntity.getBody(), new TypeReference<List<ViewStats>>() {
 
         });
-    }*/
+    }
 }
