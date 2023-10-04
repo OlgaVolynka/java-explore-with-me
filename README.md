@@ -4,8 +4,6 @@
 Необходимо учесть много деталей: какие намечаются мероприятия, свободны ли в этот момент друзья, как всех пригласить и где собраться.
 Созданное приложение — это афиша. В этой афише можно предложить какое-либо событие от выставки до похода в кино и собрать компанию для участия в нём.
 
-[back to table of content](#explore-with-me)
-
 ## Main functions
 В приложении реализовано два сервиса:
 - основной сервис будет содержать всё необходимое для работы продукта;
@@ -51,18 +49,12 @@ API для администратора:
 - название приложения, которое отправляет информацию (поле "app");
 - время создания события (поле "timestamp", формат записи "yyyy-MM-dd HH:mm:ss").
 
-![Schema](https://github.com/OlgaVolynka/java-explore-with-me/assets/119079339/e41a72a7-8591-4a80-9fa5-ae60bef6a579)
-
-
-[back to table of content](#explore-with-me)
-
 ## Schema of database
 В приложении реализовано две базы данных:
 - база данных основного сервиса;
 - база данных статистики.
-![Schema.png](Schema.png)
+![Schema](https://github.com/OlgaVolynka/java-explore-with-me/assets/119079339/6738af92-765b-47a5-b7e0-9bf83fe4ca79)
 
-[back to table of content](#explore-with-me)
 
 ## Applied technologies
 Приложение реализовано на основе Spring Boot
@@ -72,10 +64,6 @@ API для администратора:
 Кроме этого использованы следующие технологии:
 - Spring JPA / Hibernate
 - Docker
-- Kubernetes / Helm
-- Kafka
-
-[back to table of content](#explore-with-me)
 
 ## How to Start a Program
 ### Docker
